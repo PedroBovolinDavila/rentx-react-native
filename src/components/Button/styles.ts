@@ -6,7 +6,9 @@ interface IButtonProps extends RectButtonProps {
   color?: string;
 }
 
-export const Container = styled(RectButton)<IButtonProps>`
+export const Container = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})<IButtonProps>`
   width: 100%;
 
   padding: 19px;
@@ -14,7 +16,7 @@ export const Container = styled(RectButton)<IButtonProps>`
   justify-content: center;
 
   background-color: ${({ theme, color }) => color || theme.colors.main};
-` as unknown as typeof RectButton;
+`;
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_500};
