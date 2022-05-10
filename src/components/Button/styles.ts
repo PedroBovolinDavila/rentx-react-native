@@ -6,9 +6,7 @@ interface IButtonProps extends RectButtonProps {
   color?: string;
 }
 
-export const Container = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.7,
-})<IButtonProps>`
+export const Container = styled(RectButton)<IButtonProps>`
   width: 100%;
 
   padding: 19px;
