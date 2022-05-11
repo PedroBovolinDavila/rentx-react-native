@@ -1,4 +1,6 @@
 import React from "react";
+import { StatusBar } from "react-native";
+import { useNavigation } from '@react-navigation/native'
 
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
@@ -30,8 +32,20 @@ import {
 } from './styles'
 
 export function CarDetails() {
+  const navigation = useNavigation();
+
+  function handleScheduling() {
+    navigation.navigate('Scheduling')
+  }
+
   return (
     <Container>
+      <StatusBar
+        barStyle="dark-content"
+        translucent
+        backgroundColor="transparent"
+      />
+
       <Header>
         <BackButton onPress={() => { }} />
       </Header>
@@ -69,8 +83,10 @@ export function CarDetails() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
-
+        <Button
+          title="Escolher período do aluguel"
+          onPress={handleScheduling}
+        />
       </Footer>
 
     </Container>
