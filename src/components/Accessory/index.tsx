@@ -1,4 +1,5 @@
 import React from "react";
+import { RectButtonProps } from "react-native-gesture-handler";
 import { SvgProps } from "react-native-svg";
 
 import {
@@ -6,17 +7,18 @@ import {
   Name
 } from './styles'
 
-interface IProps {
+interface IProps extends RectButtonProps {
   name: string;
   icon: React.FC<SvgProps>;
 }
 
 export function Accessory({
   name,
-  icon: Icon
+  icon: Icon,
+  ...rest
 }: IProps) {
   return (
-    <Container>
+    <Container {...rest}>
       <Icon
         width={32}
         height={32}
