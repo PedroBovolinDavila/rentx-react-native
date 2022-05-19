@@ -32,14 +32,24 @@ interface IParams {
   car: ICarDTO
 }
 
+interface INavigationProps {
+  navigate: (
+    screen: string,
+    carObject: {
+      car: ICarDTO
+    }
+  ) => void;
+  goBack: () => void
+}
+
 export function CarDetails() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<INavigationProps>();
   const route = useRoute();
 
   const { car } = route.params as IParams
 
   function handleScheduling() {
-    navigation.navigate('Scheduling')
+    navigation.navigate('Scheduling', { car })
   }
 
   function handleBack() {
