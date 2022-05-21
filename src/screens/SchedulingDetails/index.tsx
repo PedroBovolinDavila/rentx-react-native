@@ -77,6 +77,8 @@ export function SchedulingDetails() {
     await api.post('/schedules_byuser', {
       user_id: 1,
       car,
+      startDate: format(getPlatformDate(parseISO(dates[0])), 'dd/MM/yy'),
+      endDate: format(getPlatformDate(parseISO(dates[dates.length - 1])), 'dd/MM/yy')
     })
 
     api.put(`/schedules_bycars/${car.id}`, {

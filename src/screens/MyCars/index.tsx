@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Alert, FlatList, StatusBar } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from '@expo/vector-icons';
 
 import { ICarDTO } from "../../dtos/CarDTO";
 
@@ -22,12 +23,19 @@ import {
   Appointments,
   AppointmentsTitle,
   AppointmentsQuantity,
+  CarWrapper,
+  CarFooter,
+  CarFooterTitle,
+  CarFooterPeriod,
+  CarFooterDate,
 } from './styles'
 
 interface ICarProps {
   car: ICarDTO;
   id: string;
   user_id: string;
+  startDate: string;
+  endDate: string;
 }
 
 export function MyCars() {
@@ -91,7 +99,7 @@ export function MyCars() {
                 Agendamentos feitos
               </AppointmentsTitle>
               <AppointmentsQuantity>
-                05
+                {cars.length}
               </AppointmentsQuantity>
             </Appointments>
 
@@ -99,7 +107,28 @@ export function MyCars() {
               data={cars}
               keyExtractor={item => item.id}
               renderItem={({ item }) => (
-                <Car data={item.car} />
+                <CarWrapper>
+                  <Car data={item.car} />
+                  <CarFooter>
+                    <CarFooterTitle>
+                      Período
+                    </CarFooterTitle>
+                    <CarFooterPeriod>
+                      <CarFooterDate>
+                        {item.startDate}
+                      </CarFooterDate>
+                      <AntDesign
+                        name='arrowright'
+                        size={20}
+                        color={theme.colors.title}
+                        style={{ marginHorizontal: 10 }}
+                      />
+                      <CarFooterDate>
+                        {item.endDate}
+                      </CarFooterDate>
+                    </CarFooterPeriod>
+                  </CarFooter>
+                </CarWrapper>
               )}
               showsVerticalScrollIndicator={false}
             />
