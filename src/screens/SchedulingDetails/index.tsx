@@ -69,13 +69,15 @@ export function SchedulingDetails() {
   async function handleSchedulingComplete() {
     const schedulingByCar = await api.get(`/schedules_bycars/${car.id}`)
 
-    console.log(schedulingByCar.data)
-
-
     const unavailable_dates = [
       ...schedulingByCar.data.unavailable_dates,
       ...dates
     ]
+
+    await api.post('/schedules_byuser', {
+      user_id: 1,
+      car,
+    })
 
     api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
@@ -83,8 +85,6 @@ export function SchedulingDetails() {
     })
       .then(() => navigation.navigate('SchedulingComplete'))
       .catch(() => Alert.alert('Erro', 'Não foi possivel confirmar o agendamento'))
-
-
   }
 
   function handleBack() {
