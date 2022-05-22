@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GestureHandlerRootView, RectButton, PanGestureHandler } from "react-native-gesture-handler";
 import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import { StatusBar, StyleSheet } from "react-native";
+import { StatusBar, StyleSheet, BackHandler } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 
 import Animated, {
@@ -96,6 +96,11 @@ export function Home() {
     }
 
     fetchCars()
+  }, [])
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true);
+    return () => BackHandler.removeEventListener('hardwareBackPress', () => true);
   }, [])
 
   return (
